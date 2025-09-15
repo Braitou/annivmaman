@@ -4,8 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>whaou!🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"">
     <style>
+        /* Force Fredoka font on all devices */
+        * {
+            font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif !important;
+        }
         * {
             box-sizing: border-box;
         }
@@ -288,6 +295,13 @@
 
         /* Optimisations pour mobile */
         @media (max-width: 768px) {
+            /* Force Fredoka font specifically on mobile */
+            *, body, h1, .birthday-message, .gift-description, .final-message, .reveal-button, .back-button {
+                font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif !important;
+                -webkit-font-feature-settings: "kern" 1;
+                font-feature-settings: "kern" 1;
+            }
+            
             body {
                 padding: 10px;
                 font-size: 16px; /* Base pour le zoom mobile */
@@ -850,10 +864,35 @@
             }, 100);
         }
         
+        // Forcer le chargement de la police Fredoka
+        function ensureFredokaFont() {
+            // Vérifier si la police est chargée
+            if (document.fonts && document.fonts.check) {
+                const fredokaLoaded = document.fonts.check('16px Fredoka');
+                if (!fredokaLoaded) {
+                    // Forcer le chargement
+                    document.fonts.load('400 16px Fredoka').then(() => {
+                        console.log('Police Fredoka chargée avec succès');
+                        // Forcer une mise à jour de l'affichage
+                        document.body.style.fontFamily = "'Fredoka', 'Comic Sans MS', cursive, sans-serif";
+                    }).catch(() => {
+                        console.log('Erreur de chargement de Fredoka, fallback vers Comic Sans MS');
+                    });
+                }
+            }
+            
+            // Forcer l'application de la police sur tous les éléments
+            const allElements = document.querySelectorAll('*');
+            allElements.forEach(element => {
+                element.style.fontFamily = "'Fredoka', 'Comic Sans MS', cursive, sans-serif";
+            });
+        }
+
         // Optimisation du chargement pour mobile
         function handleLoad() {
             // Attendre que tout soit chargé avant de démarrer les animations
             requestAnimationFrame(() => {
+                ensureFredokaFont();
                 createFallingStars();
                 optimizeForMobile();
             });
