@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>whaou!🎉</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <style>
-        /* Force Fredoka font on all devices */
+        /* Force Comic Neue font on all devices */
         * {
-            font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif !important;
+            font-family: 'Comic Neue', cursive, sans-serif !important;
         }
         * {
             box-sizing: border-box;
@@ -23,7 +20,7 @@
         }
         
         body {
-            font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Neue', cursive, sans-serif;
             background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff8000, #8000ff, #ff0080);
             background-size: 600% 600%;
             animation: psychedelicShift 5s ease infinite;
@@ -87,6 +84,7 @@
         }
 
         h1 {
+            font-family: 'Pacifico', cursive !important;
             font-size: clamp(3rem, 8vw, 6rem);
             background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0080);
             -webkit-background-clip: text;
@@ -132,7 +130,7 @@
             margin: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-family: 'Fredoka', 'Comic Sans MS', cursive;
+            font-family: 'Comic Neue', cursive;
             border: 3px solid #ffffff;
             animation: glow 2s ease-in-out infinite alternate;
         }
@@ -285,7 +283,7 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 40px;
-            font-family: 'Fredoka', 'Comic Sans MS', cursive;
+            font-family: 'Comic Neue', cursive;
         }
 
         .back-button:hover {
@@ -295,9 +293,9 @@
 
         /* Optimisations pour mobile */
         @media (max-width: 768px) {
-            /* Force Fredoka font specifically on mobile */
+            /* Force Comic Neue font specifically on mobile */
             *, body, h1, .birthday-message, .gift-description, .final-message, .reveal-button, .back-button {
-                font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif !important;
+                font-family: 'Comic Neue', cursive, sans-serif !important;
                 -webkit-font-feature-settings: "kern" 1;
                 font-feature-settings: "kern" 1;
             }
@@ -864,19 +862,19 @@
             }, 100);
         }
         
-        // Forcer le chargement de la police Fredoka
-        function ensureFredokaFont() {
+        // Forcer le chargement de la police Comic Neue
+        function ensureComicNeueFont() {
             // Vérifier si la police est chargée
             if (document.fonts && document.fonts.check) {
-                const fredokaLoaded = document.fonts.check('16px Fredoka');
-                if (!fredokaLoaded) {
+                const comicNeueLoaded = document.fonts.check('16px Comic Neue');
+                if (!comicNeueLoaded) {
                     // Forcer le chargement
-                    document.fonts.load('400 16px Fredoka').then(() => {
-                        console.log('Police Fredoka chargée avec succès');
+                    document.fonts.load('400 16px Comic Neue').then(() => {
+                        console.log('Police Comic Neue chargée avec succès');
                         // Forcer une mise à jour de l'affichage
-                        document.body.style.fontFamily = "'Fredoka', 'Comic Sans MS', cursive, sans-serif";
+                        document.body.style.fontFamily = "'Comic Neue', cursive, sans-serif";
                     }).catch(() => {
-                        console.log('Erreur de chargement de Fredoka, fallback vers Comic Sans MS');
+                        console.log('Erreur de chargement de Comic Neue, fallback vers cursive');
                     });
                 }
             }
@@ -884,7 +882,7 @@
             // Forcer l'application de la police sur tous les éléments
             const allElements = document.querySelectorAll('*');
             allElements.forEach(element => {
-                element.style.fontFamily = "'Fredoka', 'Comic Sans MS', cursive, sans-serif";
+                element.style.fontFamily = "'Comic Neue', cursive, sans-serif";
             });
         }
 
@@ -892,7 +890,7 @@
         function handleLoad() {
             // Attendre que tout soit chargé avant de démarrer les animations
             requestAnimationFrame(() => {
-                ensureFredokaFont();
+                ensureComicNeueFont();
                 createFallingStars();
                 optimizeForMobile();
             });
