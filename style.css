@@ -1,0 +1,602 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Neue', cursive;
+    background: linear-gradient(45deg, #ff6b9d, #ff8a80, #ffd54f, #81c784, #64b5f6, #ba68c8);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Titre 3D avec rotation */
+.title-3d {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff0080,
+        0 0 20px #ff0080,
+        0 0 30px #ff0080,
+        0 0 40px #ff0080;
+    animation: rotate3D 4s ease-in-out infinite;
+    margin-bottom: 40px;
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+@keyframes rotate3D {
+    0% { 
+        transform: rotateY(0deg) rotateX(10deg) scale(1);
+    }
+    25% { 
+        transform: rotateY(90deg) rotateX(10deg) scale(1.1);
+    }
+    50% { 
+        transform: rotateY(180deg) rotateX(10deg) scale(1);
+    }
+    75% { 
+        transform: rotateY(270deg) rotateX(10deg) scale(1.1);
+    }
+    100% { 
+        transform: rotateY(360deg) rotateX(10deg) scale(1);
+    }
+}
+
+/* Cadre de lumières */
+.light-frame {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    aspect-ratio: 9/16;
+    margin: 20px 0;
+    border: 8px solid transparent;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #ff0080, #00ff80, #8000ff, #ff8000);
+    background-clip: padding-box;
+    animation: frameGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes frameGlow {
+    0% { 
+        box-shadow: 
+            0 0 20px #ff0080,
+            0 0 40px #ff0080,
+            inset 0 0 20px rgba(255, 0, 128, 0.3);
+    }
+    100% { 
+        box-shadow: 
+            0 0 40px #00ff80,
+            0 0 60px #00ff80,
+            inset 0 0 30px rgba(0, 255, 128, 0.3);
+    }
+}
+
+/* Coins lumineux */
+.light-corner {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: cornerBlink 1.5s ease-in-out infinite;
+}
+
+.light-corner.top-left {
+    top: -15px;
+    left: -15px;
+    background: radial-gradient(circle, #ff0080, #ff4080);
+    animation-delay: 0s;
+}
+
+.light-corner.top-right {
+    top: -15px;
+    right: -15px;
+    background: radial-gradient(circle, #00ff80, #40ff80);
+    animation-delay: 0.3s;
+}
+
+.light-corner.bottom-left {
+    bottom: -15px;
+    left: -15px;
+    background: radial-gradient(circle, #8000ff, #8040ff);
+    animation-delay: 0.6s;
+}
+
+.light-corner.bottom-right {
+    bottom: -15px;
+    right: -15px;
+    background: radial-gradient(circle, #ff8000, #ff8040);
+    animation-delay: 0.9s;
+}
+
+@keyframes cornerBlink {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.5);
+        opacity: 0.7;
+    }
+}
+
+/* Diaporama */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 30px rgba(255, 255, 255, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Message d'amour */
+.love-message {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.love-message p {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff0080,
+        0 0 20px #ff0080;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Bandeau à gratter */
+.scratch-card {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    height: 80px;
+    margin: 30px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.2);
+    cursor: crosshair;
+}
+
+.scratch-surface {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* Canvas de masque pour le grattage réaliste optimisé */
+.scratch-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    cursor: crosshair;
+    transition: opacity 0.3s ease;
+    /* Optimisations pour la performance */
+    will-change: opacity;
+    transform: translateZ(0); /* Force l'accélération matérielle */
+    image-rendering: pixelated; /* Améliore les performances de rendu */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+.scratch-surface::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.4) 0%, 
+        transparent 50%),
+        radial-gradient(circle at 70% 70%, 
+        rgba(255, 255, 255, 0.3) 0%, 
+        transparent 50%);
+    pointer-events: none;
+}
+
+/* Styles supprimés car le texte est maintenant rendu sur canvas */
+
+.hidden-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6b9d, #ff8a80, #ffd54f);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hidden-content.revealed {
+    opacity: 1;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.surprise-button {
+    background: linear-gradient(45deg, #ff0080, #ff4080);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 
+        0 4px 15px rgba(255, 0, 128, 0.4),
+        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: buttonPulse 2s ease-in-out infinite;
+    position: relative;
+    z-index: 25;
+}
+
+.surprise-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 20px rgba(255, 0, 128, 0.6),
+        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+.surprise-button:active {
+    transform: translateY(0);
+    box-shadow: 
+        0 2px 10px rgba(255, 0, 128, 0.4),
+        inset 0 2px 5px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes buttonPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 
+            0 4px 15px rgba(255, 0, 128, 0.4),
+            inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 
+            0 6px 20px rgba(255, 0, 128, 0.6),
+            inset 0 2px 5px rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* Effet de grattage */
+.scratch-surface.scratched {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Responsive pour le bandeau à gratter */
+@media (max-width: 768px) {
+    .scratch-card {
+        width: 95%;
+        height: 70px;
+        margin: 20px auto;
+    }
+    
+    .scratch-text {
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        letter-spacing: 1px;
+    }
+    
+    .surprise-button {
+        padding: 12px 25px;
+        font-size: clamp(0.9rem, 2vw, 1.2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .scratch-card {
+        width: 98%;
+        height: 60px;
+        margin: 15px auto;
+    }
+    
+    .scratch-text {
+        font-size: clamp(0.9rem, 2vw, 1.3rem);
+        letter-spacing: 0.5px;
+    }
+    
+    .surprise-button {
+        padding: 10px 20px;
+        font-size: clamp(0.8rem, 1.8vw, 1.1rem);
+    }
+}
+
+/* Étoiles animées */
+.stars, .stars2, .stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.stars {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 3s linear infinite;
+}
+
+.stars2 {
+    background-image: 
+        radial-gradient(1px 1px at 50px 20px, #ff0080, transparent),
+        radial-gradient(1px 1px at 80px 60px, #00ff80, transparent),
+        radial-gradient(1px 1px at 120px 10px, #8000ff, transparent),
+        radial-gradient(1px 1px at 150px 50px, #ff8000, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 4s linear infinite reverse;
+}
+
+.stars3 {
+    background-image: 
+        radial-gradient(1px 1px at 30px 50px, #ffff00, transparent),
+        radial-gradient(1px 1px at 70px 20px, #ff00ff, transparent),
+        radial-gradient(1px 1px at 110px 70px, #00ffff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 5s linear infinite;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-100px); }
+}
+
+/* Confettis */
+.confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.confetti::before,
+.confetti::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff0080;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti::before {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.confetti::after {
+    left: 80%;
+    background: #00ff80;
+    animation-delay: 1.5s;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Particules flottantes */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.particle {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.particle:nth-child(3) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.particle:nth-child(4) {
+    left: 40%;
+    animation-delay: 3s;
+}
+
+.particle:nth-child(5) {
+    left: 60%;
+    animation-delay: 4s;
+}
+
+.particle:nth-child(6) {
+    left: 70%;
+    animation-delay: 5s;
+}
+
+.particle:nth-child(7) {
+    left: 80%;
+    animation-delay: 0.5s;
+}
+
+.particle:nth-child(8) {
+    left: 90%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .light-frame {
+        width: 95%;
+        max-width: 350px;
+        aspect-ratio: 9/16;
+    }
+    
+    .title-3d {
+        font-size: clamp(1.5rem, 6vw, 3rem);
+        margin-bottom: 20px;
+    }
+    
+    .love-message p {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+    }
+    
+    .particle {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .light-frame {
+        width: 98%;
+        max-width: 300px;
+        aspect-ratio: 9/16;
+    }
+    
+    .light-corner {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .light-corner.top-left,
+    .light-corner.top-right {
+        top: -10px;
+    }
+    
+    .light-corner.bottom-left,
+    .light-corner.bottom-right {
+        bottom: -10px;
+    }
+    
+    .light-corner.top-left,
+    .light-corner.bottom-left {
+        left: -10px;
+    }
+    
+    .light-corner.top-right,
+    .light-corner.bottom-right {
+        right: -10px;
+    }
+}

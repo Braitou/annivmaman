@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>whaou!🎉</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff8000, #8000ff, #ff0080);
+            background-size: 600% 600%;
+            animation: psychedelicShift 5s ease infinite;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        @keyframes psychedelicShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+            width: calc(100% - 40px);
+            border: 5px solid #ff00ff;
+            position: relative;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+        }
+
+        .container::before {
+            content: '✨';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .container::after {
+            content: '🌟';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 2rem;
+            animation: sparkle 2s ease-in-out infinite reverse;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.3) rotate(180deg); }
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff0080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: bounce 2s ease-in-out infinite;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .birthday-message {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #ff0080;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            line-height: 1.4;
+            font-weight: bold;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .reveal-button {
+            background: linear-gradient(45deg, #ff00ff, #ff8000, #ffff00);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.6);
+            transition: all 0.3s ease;
+            margin: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Comic Sans MS', cursive;
+            border: 3px solid #ffffff;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 10px 30px rgba(255, 0, 255, 0.6); }
+            to { box-shadow: 0 15px 40px rgba(255, 0, 255, 0.9), 0 0 20px rgba(255, 255, 0, 0.5); }
+        }
+
+        .reveal-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 0, 255, 0.8);
+        }
+
+        .gifts-section {
+            margin-top: 100px;
+            padding: 60px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .gifts-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gifts-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .gifts-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .gifts-row.top {
+            justify-content: space-around;
+        }
+
+        .gifts-row.bottom {
+            justify-content: center;
+        }
+
+        .gift-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ff00ff;
+            transition: all 0.3s ease;
+            max-width: 300px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .gifts-row.top .gift-item:nth-child(2) {
+            animation-delay: 1.5s;
+        }
+
+        .gifts-row.bottom .gift-item {
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gift-item:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 25px 60px rgba(255, 0, 255, 0.4);
+        }
+
+        .gift-icon {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            background: white;
+            padding: 10px;
+            animation: rotate360 4s linear infinite;
+            transition: animation-duration 0.3s ease;
+        }
+
+        .gift-icon:hover {
+            animation-duration: 1s;
+        }
+
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .gift-description {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #ff0080;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .final-message {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #8000ff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-top: 50px;
+            padding: 30px;
+            background: linear-gradient(45deg, rgba(255, 255, 0, 0.2), rgba(255, 0, 255, 0.2));
+            border-radius: 20px;
+            border: 3px dashed #ff00ff;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .emoji-decoration {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, #ff0080, #ff4080);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 0, 128, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 40px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 0, 128, 0.6);
+        }
+
+        /* Optimisations pour mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 16px; /* Base pour le zoom mobile */
+            }
+            
+            .container {
+                margin: 10px auto;
+                padding: 20px 15px;
+                border-radius: 20px;
+                width: calc(100vw - 20px);
+                max-width: calc(100vw - 20px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                border-width: 3px;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            
+            h1 {
+                font-size: clamp(2rem, 12vw, 3.5rem);
+                margin-bottom: 20px;
+                letter-spacing: 1px;
+            }
+            
+            .birthday-message {
+                font-size: clamp(1rem, 5vw, 1.4rem);
+                margin-bottom: 25px;
+                padding: 0 10px;
+                line-height: 1.5;
+            }
+            
+            .reveal-button {
+                padding: 16px 24px;
+                font-size: clamp(1rem, 4vw, 1.3rem);
+                margin: 15px auto;
+                letter-spacing: 1px;
+                border-radius: 30px;
+                width: 85%;
+                max-width: 280px;
+                display: block;
+                min-height: 48px;
+                line-height: 1.2;
+            }
+            
+            .gifts-section {
+                margin-top: 50px;
+                padding: 30px 0;
+            }
+            
+            .gifts-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .gifts-row.top {
+                justify-content: center;
+            }
+            
+            .gift-item {
+                max-width: calc(100% - 10px);
+                width: calc(100% - 10px);
+                padding: 25px 15px;
+                margin: 0 auto 20px auto;
+                border-radius: 20px;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+            }
+            
+            .gift-icon {
+                width: 110px;
+                height: 110px;
+                margin-bottom: 15px;
+                border-radius: 10px;
+                padding: 10px;
+                flex-shrink: 0;
+            }
+            
+            .gift-description {
+                font-size: clamp(0.9rem, 4vw, 1.2rem);
+                line-height: 1.5;
+                padding: 0 8px;
+                text-align: center;
+                word-spacing: 1px;
+            }
+            
+            .final-message {
+                font-size: clamp(1rem, 4vw, 1.4rem);
+                margin-top: 30px;
+                padding: 20px 15px;
+                border-radius: 15px;
+                line-height: 1.5;
+                box-sizing: border-box;
+                width: calc(100% - 10px);
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .emoji-decoration {
+                font-size: 1.5rem;
+                margin: 0 5px;
+            }
+            
+            .back-button {
+                padding: 14px 24px;
+                font-size: clamp(0.9rem, 4vw, 1.1rem);
+                margin: 25px auto 0 auto;
+                border-radius: 20px;
+                width: 70%;
+                max-width: 250px;
+                text-align: center;
+                display: block;
+                min-height: 48px;
+                line-height: 1.3;
+            }
+            
+            .container::before,
+            .container::after {
+                font-size: 1.5rem;
+                top: -6px;
+            }
+            
+            .container::before {
+                left: -6px;
+            }
+            
+            .container::after {
+                right: -6px;
+            }
+        }
+        
+        /* Optimisations pour très petits écrans */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+            
+            .container {
+                margin: 8px auto;
+                padding: 18px 12px;
+                border-radius: 15px;
+                border-width: 2px;
+                width: calc(100vw - 16px);
+                max-width: calc(100vw - 16px);
+                box-sizing: border-box;
+            }
+            
+            h1 {
+                font-size: clamp(1.8rem, 15vw, 3rem);
+                margin-bottom: 15px;
+                letter-spacing: 0.5px;
+            }
+            
+            .birthday-message {
+                font-size: clamp(0.9rem, 6vw, 1.2rem);
+                margin-bottom: 20px;
+                padding: 0 5px;
+            }
+            
+            .reveal-button {
+                padding: 14px 20px;
+                font-size: clamp(0.9rem, 5vw, 1.2rem);
+                margin: 15px auto;
+                width: 88%;
+                max-width: 260px;
+                display: block;
+                min-height: 50px;
+            }
+            
+            .gifts-section {
+                margin-top: 30px;
+                padding: 20px 0;
+            }
+            
+            .gift-item {
+                padding: 20px 12px;
+                max-width: calc(100% - 8px);
+                width: calc(100% - 8px);
+                margin: 0 auto 15px auto;
+                min-height: 180px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+            }
+            
+            .gift-icon {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 12px;
+                padding: 8px;
+                flex-shrink: 0;
+            }
+            
+            .gift-description {
+                font-size: clamp(0.8rem, 4.5vw, 1.1rem);
+                padding: 0 6px;
+                line-height: 1.4;
+                text-align: center;
+            }
+            
+            .final-message {
+                font-size: clamp(0.9rem, 5vw, 1.2rem);
+                margin-top: 20px;
+                padding: 15px 10px;
+                border-radius: 12px;
+                box-sizing: border-box;
+                width: calc(100% - 8px);
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .emoji-decoration {
+                font-size: 1.2rem;
+                margin: 0 3px;
+            }
+            
+            .back-button {
+                padding: 12px 18px;
+                font-size: clamp(0.8rem, 5vw, 1rem);
+                margin: 20px auto 0 auto;
+                width: 80%;
+                max-width: 240px;
+                display: block;
+                min-height: 46px;
+                line-height: 1.4;
+            }
+            
+            .container::before,
+            .container::after {
+                font-size: 1.2rem;
+                top: -4px;
+            }
+            
+            .container::before {
+                left: -4px;
+            }
+            
+            .container::after {
+                right: -4px;
+            }
+        }
+        
+        /* Optimisations pour les interactions tactiles */
+        @media (max-width: 768px) {
+            .reveal-button,
+            .back-button {
+                min-height: 48px; /* Taille minimale recommandée pour le tactile */
+                touch-action: manipulation; /* Évite le double-tap zoom */
+                -webkit-tap-highlight-color: rgba(255, 0, 255, 0.3);
+                cursor: pointer;
+            }
+            
+            .gift-item {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            /* Améliorer la lisibilité sur mobile */
+            * {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            .birthday-message,
+            .gift-description,
+            .final-message {
+                -webkit-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
+            
+            /* Réduire les animations sur mobile pour de meilleures performances */
+            .gift-icon {
+                animation-duration: 8s; /* Plus lent pour économiser la batterie */
+                will-change: auto; /* Optimisation GPU seulement quand nécessaire */
+            }
+            
+            .gift-icon:hover,
+            .gift-icon:active {
+                animation-duration: 4s;
+                will-change: transform;
+            }
+            
+            /* Optimiser l'animation de fond pour mobile */
+            body {
+                will-change: auto;
+            }
+            
+            @media (max-width: 480px) {
+                body {
+                    animation-duration: 8s; /* Plus lent sur très petits écrans */
+                }
+                
+                .gift-icon {
+                    animation-duration: 10s;
+                }
+            }
+            
+            /* Respecter les préférences d'accessibilité */
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+            
+            /* Optimisation pour les connexions lentes */
+            @media (prefers-reduced-data: reduce) {
+                .gift-icon {
+                    animation: none;
+                }
+                
+                body {
+                    animation-duration: 10s;
+                }
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="emoji-decoration">🎂</span>
+            Laulau !
+            <span class="emoji-decoration">🎉</span>
+        </h1>
+        
+        <div class="birthday-message">
+            Félicitations pour toi, 63ème année sur la planète.<br>
+            Tu as le choix entre plusieurs cadeaux.
+        </div>
+        
+        <button class="reveal-button" onclick="revealGifts()">
+            ✨ Dévoiler les cadeaux ✨
+        </button>
+        
+        <div class="gifts-section" id="giftsSection">
+            <div class="gifts-container">
+                <div class="gifts-row top">
+                    <div class="gift-item">
+                        <img src="icones/pngtree-flying-airplane-png-image_13816471.png" alt="Avion" class="gift-icon">
+                        <div class="gift-description">
+                            un voyage où tu en as envie.
+                        </div>
+                    </div>
+                    
+                    <div class="gift-item">
+                        <img src="icones/vélo.webp" alt="Vélo" class="gift-icon">
+                        <div class="gift-description">
+                            un vélo électrique pour te déplacer où tu le souhaites.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gifts-row bottom">
+                    <div class="gift-item">
+                        <img src="icones/dontknow.png" alt="Surprise" class="gift-icon">
+                        <div class="gift-description">
+                            ce qui te ferai plaisir
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="final-message">
+                <span class="emoji-decoration">💳</span>
+                un bon d'achat t'attend sur ton compte en banque. Merci. Gros bisous.
+                <span class="emoji-decoration">💕</span>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-button">
+            ← Retour à la page d'accueil
+        </a>
+    </div>
+
+    <script>
+        function revealGifts() {
+            const giftsSection = document.getElementById('giftsSection');
+            
+            // Faire défiler jusqu'à la section des cadeaux
+            giftsSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            
+            // Afficher la section avec animation après un délai
+            setTimeout(() => {
+                giftsSection.classList.add('visible');
+            }, 500);
+        }
+
+        // Ajouter des étoiles qui tombent en arrière-plan (optimisé pour mobile)
+        function createFallingStars() {
+            const stars = ['⭐', '✨', '🌟', '💫'];
+            
+            // Réduire la fréquence sur mobile pour de meilleures performances
+            const isMobile = window.innerWidth <= 768;
+            const isVerySmall = window.innerWidth <= 480;
+            const interval = isVerySmall ? 3000 : (isMobile ? 2500 : 1000);
+            const maxStars = isVerySmall ? 2 : (isMobile ? 3 : 5);
+            let activeStars = 0;
+            
+            // Vérifier les préférences d'accessibilité
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const prefersReducedData = window.matchMedia('(prefers-reduced-data: reduce)').matches;
+            if (prefersReducedMotion || prefersReducedData) return;
+            
+            setInterval(() => {
+                // Limiter le nombre d'étoiles actives sur mobile
+                if (activeStars >= maxStars) return;
+                
+                const star = document.createElement('div');
+                star.textContent = stars[Math.floor(Math.random() * stars.length)];
+                star.style.position = 'fixed';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = '-50px';
+                star.style.fontSize = (isVerySmall ? Math.random() * 10 + 6 : (isMobile ? Math.random() * 12 + 8 : Math.random() * 20 + 10)) + 'px';
+                star.style.zIndex = '-1';
+                star.style.pointerEvents = 'none';
+                star.style.animation = `fall ${Math.random() * 2 + 3}s linear forwards`;
+                star.style.willChange = 'transform'; // Optimisation GPU
+                star.style.contain = 'layout style paint'; // Optimisation de rendu
+                
+                activeStars++;
+                document.body.appendChild(star);
+                
+                setTimeout(() => {
+                    if (star.parentNode) {
+                        star.parentNode.removeChild(star);
+                        activeStars--;
+                    }
+                }, 5000);
+            }, interval);
+        }
+
+        // Ajouter l'animation CSS pour les étoiles qui tombent
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Fonctions d'optimisation mobile
+        function optimizeForMobile() {
+            const isMobile = window.innerWidth <= 768;
+            const isVerySmall = window.innerWidth <= 480;
+            
+            if (isMobile) {
+                // Optimiser le rendu pour mobile
+                document.body.style.setProperty('transform', 'translateZ(0)');
+                document.body.style.setProperty('backface-visibility', 'hidden');
+                // Ajouter le support des gestes tactiles
+                let touchStartY = 0;
+                let touchEndY = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    touchStartY = e.changedTouches[0].screenY;
+                }, { passive: true });
+                
+                document.addEventListener('touchend', (e) => {
+                    touchEndY = e.changedTouches[0].screenY;
+                    handleSwipe();
+                }, { passive: true });
+                
+                function handleSwipe() {
+                    const swipeThreshold = 50;
+                    const diff = touchStartY - touchEndY;
+                    
+                    // Swipe vers le haut pour révéler les cadeaux
+                    if (diff > swipeThreshold) {
+                        const giftsSection = document.getElementById('giftsSection');
+                        if (!giftsSection.classList.contains('visible')) {
+                            revealGifts();
+                        }
+                    }
+                }
+                
+                // Optimiser les performances en réduisant les animations gourmandes
+                const body = document.body;
+                body.style.setProperty('--animation-duration', '8s');
+                
+                // Ajouter une indication visuelle pour le swipe (seulement si pas encore révélé)
+                const giftsSection = document.getElementById('giftsSection');
+                if (!giftsSection.classList.contains('visible')) {
+                    const swipeHint = document.createElement('div');
+                    swipeHint.innerHTML = '👆 Glisse vers le haut pour plus de surprises';
+                    swipeHint.style.cssText = `
+                        position: fixed;
+                        bottom: ${isVerySmall ? '15px' : '20px'};
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: rgba(255, 0, 255, 0.9);
+                        color: white;
+                        padding: ${isVerySmall ? '6px 12px' : '8px 15px'};
+                        border-radius: 20px;
+                        font-size: ${isVerySmall ? '0.7rem' : '0.8rem'};
+                        z-index: 1000;
+                        animation: pulse 2s infinite;
+                        pointer-events: none;
+                        max-width: 90%;
+                        text-align: center;
+                        box-sizing: border-box;
+                    `;
+                
+                    // Ajouter l'animation pulse pour l'indication
+                    const pulseStyle = document.createElement('style');
+                    pulseStyle.textContent = `
+                        @keyframes pulse {
+                            0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+                            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+                        }
+                    `;
+                    document.head.appendChild(pulseStyle);
+                    document.body.appendChild(swipeHint);
+                }
+                
+                // Masquer l'indication après révélation des cadeaux
+                const originalRevealGifts = window.revealGifts;
+                window.revealGifts = function() {
+                    originalRevealGifts.call(this);
+                    if (swipeHint.parentNode) {
+                        swipeHint.style.opacity = '0';
+                        setTimeout(() => {
+                            if (swipeHint.parentNode) {
+                                swipeHint.parentNode.removeChild(swipeHint);
+                            }
+                        }, 500);
+                    }
+                };
+            }
+        }
+        
+        // Gérer les changements d'orientation
+        function handleOrientationChange() {
+            // Forcer un reflow pour corriger les problèmes d'affichage
+            setTimeout(() => {
+                window.scrollTo(0, window.scrollY + 1);
+                window.scrollTo(0, window.scrollY - 1);
+            }, 100);
+        }
+        
+        // Optimisation du chargement pour mobile
+        function handleLoad() {
+            // Attendre que tout soit chargé avant de démarrer les animations
+            requestAnimationFrame(() => {
+                createFallingStars();
+                optimizeForMobile();
+            });
+        }
+        
+        // Démarrer les animations au chargement de la page
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', handleLoad);
+        } else {
+            handleLoad();
+        }
+        
+        // Gérer les changements d'orientation et de taille
+        let resizeTimeout;
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Redémarrer les optimisations si nécessaire
+                optimizeForMobile();
+                
+                // Forcer un reflow pour corriger les problèmes d'affichage
+                if (window.innerWidth <= 768) {
+                    document.body.style.height = 'auto';
+                    setTimeout(() => {
+                        document.body.style.height = '';
+                    }, 50);
+                }
+            }, 150);
+        }
+        
+        // Écouter les changements d'orientation et de redimensionnement
+        window.addEventListener('orientationchange', () => {
+            setTimeout(handleOrientationChange, 100);
+            setTimeout(handleResize, 200);
+        });
+        window.addEventListener('resize', handleResize, { passive: true });
+        
+        // Améliorer les performances de scroll sur mobile
+        if (window.innerWidth <= 768) {
+            document.addEventListener('touchstart', function(){}, {passive: true});
+            document.addEventListener('touchmove', function(){}, {passive: true});
+        }
+    </script>
+</body>
+</html>
