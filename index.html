@@ -8,6 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Musique d'anniversaire -->
+    <audio id="anniversaryMusic" autoplay loop muted preload="auto">
+        <source src="song/Joyeux Anniversaire song.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    
+    <!-- Bouton pour démarrer la musique si l'autoplay ne fonctionne pas -->
+    <div id="audioNotification" class="audio-notification" style="display: none;">
+        <p>🎵 Cliquez ici pour démarrer la musique d'anniversaire ! 🎵</p>
+    </div>
+    
     <!-- Étoiles animées en arrière-plan -->
     <div class="stars"></div>
     <div class="stars2"></div>

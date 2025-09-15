@@ -15,6 +15,51 @@ body {
     position: relative;
 }
 
+/* Notification audio */
+.audio-notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border: 3px solid #ff6b9d;
+    border-radius: 15px;
+    padding: 15px 25px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: bounceIn 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+.audio-notification:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.audio-notification p {
+    margin: 0;
+    color: #ff6b9d;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
 @keyframes gradientShift {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }

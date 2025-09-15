@@ -817,4 +817,57 @@ document.addEventListener('DOMContentLoaded', function() {
             delay += note.duration * 1000;
         });
     }
+
+    // Gestion de la musique d'anniversaire
+    const anniversaryMusic = document.getElementById('anniversaryMusic');
+    const audioNotification = document.getElementById('audioNotification');
+    let musicStarted = false;
+
+    // Fonction pour démarrer la musique
+    function startMusic() {
+        if (!musicStarted) {
+            anniversaryMusic.muted = false;
+            anniversaryMusic.play().then(() => {
+                console.log('Musique démarrée avec succès');
+                audioNotification.style.display = 'none';
+                musicStarted = true;
+            }).catch((error) => {
+                console.log('Autoplay bloqué:', error);
+                audioNotification.style.display = 'block';
+            });
+        }
+    }
+
+    // Tentative de démarrage automatique après un court délai
+    setTimeout(() => {
+        startMusic();
+    }, 1000);
+
+    // Démarrer la musique lors du premier clic sur la page
+    document.addEventListener('click', function() {
+        if (!musicStarted) {
+            startMusic();
+        }
+    }, { once: true });
+
+    // Démarrer la musique lors du premier survol
+    document.addEventListener('mouseover', function() {
+        if (!musicStarted) {
+            startMusic();
+        }
+    }, { once: true });
+
+    // Gestionnaire pour la notification audio
+    if (audioNotification) {
+        audioNotification.addEventListener('click', function() {
+            startMusic();
+        });
+    }
+
+    // Tentative de démarrage lors du focus de la fenêtre
+    window.addEventListener('focus', function() {
+        if (!musicStarted) {
+            setTimeout(startMusic, 500);
+        }
+    });
 });
